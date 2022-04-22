@@ -51,10 +51,24 @@ namespace exam_01.Controllers
     [HttpGet("/meetups")]
     public IActionResult Meetups()
     {
+
+      if (HttpContext.Session.GetInt32("Session_UserId") == null)
+      {
+        Console.WriteLine("--------------------------Null UseId");
+
+        return RedirectToAction("Logout");
+      }
+
       ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
       ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
       ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
       ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
+
+
+      int uId = (int)HttpContext.Session.GetInt32("Session_UserId");
+
+      ViewBag.OneUserReservations = _context.Reservations.Where(r => r.UserId == uId).ToList();
+
       return View();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
