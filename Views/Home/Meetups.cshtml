@@ -11,9 +11,7 @@
             <tr>
                 <th scope="col">MeetupId</th>
                 <th scope="col">Title</th>
-                <th scope="col">Date</th>
-                <th scope="col">Duration_String</th>
-                <th scope="col">Duration_Int By</th>
+                <th scope="col">DateTime</th>
                 <th scope="col">Functions</th>
                 <th scope="col">CreatedBy</th>
             </tr>
@@ -27,24 +25,19 @@
 
 
                     <tr>
-                        <td>
-                            <p>@x.MeetupId</p>
+                        <td class="align-middle">
+                            <p class="align-middle">@x.MeetupId</p>
                         </td>
-                        <td>
-                            <p><a class="btn btn-success" href="/meetups/@x.MeetupId">@x.Title</a></p>
+                        <td class="align-middle">
+                            <p><a class="btn btn-success btn-block my-3" href="/meetups/@x.MeetupId">@x.Title</a></p>
                         </td>
-                        <td>
+                        <td class="align-middle">
                             <p>@x.Date</p>
                         </td>
-                        <td>
-                            <p>@x.Duration_String</p>
-                        </td>
-                        <td>
-                            <p>@x.Duration_Int</p>
-                        </td>
+
                         @if (@x.UserId == @ViewBag.Session_UserId)
                         {
-                            <td><a class="btn btn-danger" href="/meetups/delete/@x.MeetupId">Delete</a></td>
+                            <td class="align-middle"><a class="btn btn-danger btn-block my-3" href="/meetups/delete/@x.MeetupId">Delete</a></td>
                         }
                         @if (@x.UserId != @ViewBag.Session_UserId)
                         {
@@ -60,22 +53,22 @@
                             }
                             if (found && rId != 0)
                             {
-                                <td>
-                                    <a class="btn btn-warning" href="/reservations/delete/@rId">De-RSVP</a>
+                                <td class="align-middle">
+                                    <a class="btn btn-warning btn-block my-3" href="/reservations/delete/@rId">De-RSVP</a>
                                 </td>
                             }
                             else
                             {
-                                <td>
+                                <td class="align-middle">
                                     <form action="/reservations/reserve" method="post">
                                         <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
                                         <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
-                                        <input type="submit" value="RSVP" class="btn btn-primary my-3">
+                                        <input type="submit" value="RSVP" class="btn btn-primary btn-block my-3">
                                     </form>
                                 </td>
                             }
                         }
-                        <td>
+                        <td class="align-middle">
                             <p>@x.Creator.Name</p>
                         </td>
                     </tr>

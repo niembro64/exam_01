@@ -1,21 +1,42 @@
 @{
   ViewData["Title"] = "One Meetup";
 }
-
+<div class="text-center">
 <h1>@ViewBag.OneMeetup.Title</h1>
-<h3> Date: @ViewBag.OneMeetup.Date</h3>
+<p><i>@ViewBag.OneMeetup.Description</i></p>
+<h3>@ViewBag.OneMeetup.Date</h3>
 
 @* @foreach (Reservation a in @ViewBag.OneWeddingReservations.UserList)
   {
   <p>@a.UserId</p>
   } *@
 
-<h3>Description: @ViewBag.OneMeetup.Description</h3>
-<h3>Creator: @ViewBag.OneMeetup.Creator.Name</h3>
+<h3 class="my-3">By @ViewBag.OneMeetup.Creator.Name</h3>
 @* <h3>Coordinator: @ViewBag.OneMeetupFull.User.Name</h3> *@
 
-<h3>Reservations</h3>
-@foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
-{
-  <p>@a.User.UserId @a.User.Name</p>
-}
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+
+      <th scope="col">RSVPS</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
+    {
+      <tr>
+
+        <th scope="row">@a.User.UserId</th>
+        <td>@a.User.Name</td>
+
+      </tr>
+    }
+  </tbody>
+</table>
+
+</div>
