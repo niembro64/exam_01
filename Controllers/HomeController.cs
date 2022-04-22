@@ -113,7 +113,7 @@ namespace exam_01.Controllers
         ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
         ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
         ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
-        return View("MewMeetup");
+        return View("NewMeetup");
       }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 

@@ -15,6 +15,8 @@ namespace exam_01.Models
     [CustomValidation(typeof(CustomValidationMethods), nameof(CustomValidationMethods.FutureDate))]
     public DateTime Date { get; set; }
     [Required]
+    public string Description { get; set; }
+    [Required]
     public string Duration_String { get; set; }
     [Required]
     public int Duration_Int { get; set; }
