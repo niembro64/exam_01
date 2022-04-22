@@ -67,25 +67,21 @@ namespace exam_01.Models
       if (!hasLowerChar.IsMatch(input))
       {
 
-        return new ValidationResult("Password should contain At least one lower case letter");
+        return new ValidationResult("Password should contain at least one lower case letter");
       }
       else if (!hasUpperChar.IsMatch(input))
       {
-        return new ValidationResult("Password should contain At least one upper case letter");
+        return new ValidationResult("Password should contain at least one upper case letter");
 
-      }
-      else if (!hasMiniMaxChars.IsMatch(input))
-      {
-        return new ValidationResult("Password should not be less than or greater than 12 characters");
       }
       else if (!hasNumber.IsMatch(input))
       {
-        return new ValidationResult("Password should contain At least one numeric value");
+        return new ValidationResult("Password should contain at least one number");
       }
 
       else if (!hasSymbols.IsMatch(input))
       {
-        return new ValidationResult("Password should contain At least one special case characters");
+        return new ValidationResult("Password should contain at least one special character");
       }
       else
       {
