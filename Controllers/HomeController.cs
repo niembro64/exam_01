@@ -48,6 +48,16 @@ namespace exam_01.Controllers
       return Redirect("/login");
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      [HttpGet("meetups/delete/{mId}")]
+    public IActionResult DeleteMeetup(int mId)
+    {
+      Console.WriteLine($"+++++++DELETING MEETUP : {mId}");
+      Meetup MeetupToRemove = _context.Meetups.SingleOrDefault(s => s.MeetupId == mId);
+      _context.Meetups.Remove(MeetupToRemove);
+      _context.SaveChanges();
+      return RedirectToAction("Meetups");
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [HttpGet("/meetups")]
     public IActionResult Meetups()
     {
