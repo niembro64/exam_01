@@ -1,7 +1,40 @@
 @{
     ViewData["Title"] = "New Meetup";
 }
+@model Meetup
 
-<div class="d-flex flex-column align-items-center">
-    <h1>@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center align-items-start flex-row flex-wrap">
+
+    <form class="d-flex flex-column align-items-start m-3" action="/meetups/add" method="post">
+        <h3>New Meetup</h3>
+
+        <label for="Title">Title</label>
+        <input asp-for="Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+        <label for="Date">Date</label>
+        <input asp-for="Date">
+        <span asp-validation-for="Date" class="text-danger"></span>
+
+        <div class="form-group">
+            <label for="Duration_String">Product Options</label>
+            <select asp-for="Duration_String" class="form-control">
+                <option value="Days">Days</option>
+                <option value="Hours">Hours</option>
+                <option value="Minutes">Minutes</option>
+            </select>
+        </div>
+
+        <label for="Duration_Int">Duration_Int</label>
+        <input asp-for="Duration_Int">
+        <span asp-validation-for="Duration_Int" class="text-danger"></span>
+
+        @* <label for="CreatedById">CreatedById</label>
+            <input asp-for="CreatedById" value=@ViewBag.Session_UserId>
+            <span asp-validation-for="CreatedById" class="text-danger"></span> *@
+
+        <input type="hidden" name="UserId" value=@ViewBag.Session_UserId>
+
+        <input type="submit" value="Create" class="btn btn-primary my-3">
+    </form>
 </div>

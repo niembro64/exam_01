@@ -33,7 +33,7 @@ namespace exam_01.Controllers
     public IActionResult Login()
     {
       ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
-      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Title).ToList();
+      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
       ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
       ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
       return View();
@@ -52,7 +52,7 @@ namespace exam_01.Controllers
     public IActionResult Meetups()
     {
       ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
-      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Title).ToList();
+      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
       ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
       ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
       return View();
@@ -62,12 +62,37 @@ namespace exam_01.Controllers
     public IActionResult NewMeetup()
     {
       ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
-      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Title).ToList();
+      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
       ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
       ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
       return View();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [HttpPost("meetups/add")]
+    public IActionResult AddMeetup(Meetup newMeetup)
+    {
+      if (ModelState.IsValid)
+      {
+        _context.Meetups.Add(newMeetup);
+        _context.SaveChanges();
+
+        ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
+        ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
+        ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
+        ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
+
+        return RedirectToAction("Meetups");
+      }
+      else
+      {
+        ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
+        ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
+        ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
+        ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
+        return View("MewMeetup");
+      }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     [HttpPost("users/login")]
     public IActionResult LogUser(LoginUser loggedIn)
     {
