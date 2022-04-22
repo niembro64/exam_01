@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | Exam</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="d-flex flex-column align-items-center">
+    @if (@ViewBag.Session_UserId != null)
+    {
+    }
+    <div class="d-flex justify-content-between align-items-baseline m-2 p-2 bg-light border rounded">
+        <div class="btn-group" role="group">
+            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Xxx">XXX</a>
+            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Yyy">YYY</a>
+            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Zzz">ZZZ</a>
+        </div>
+        <div class="d-flex flex-row m-2 p-0">
+            @* <p class="my-0 mx-2 p-0">@ViewBag.Session_FirstName</p>
+                <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p> *@
+            <p>Name</p>
+        </div>
+
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+    </div>
+    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>
