@@ -15,9 +15,13 @@ namespace exam_01.Models
     [CustomValidation(typeof(CustomValidationMethods), nameof(CustomValidationMethods.FutureDate))]
     public DateTime Date { get; set; }
     [Required]
-    public TimeSpan Duration { get; set; }
+    public string Duration_String { get; set; }
     [Required]
-    public int CreatedById {get;set;}
+    public int Duration_Int { get; set; }
+
+    public int UserId { get; set; }
+
+    public User Creator { get; set; }
     // navigation property
     public List<Reservation> UserList { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;

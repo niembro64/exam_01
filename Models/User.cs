@@ -10,8 +10,8 @@ namespace exam_01.Models
     [Key]
     public int UserId { get; set; }
     [Required]
+    [StringLength(255, MinimumLength = 2)]
     public string Name { get; set; }
-
     [Required]
     [EmailAddress]
     public string Email { get; set; }
@@ -26,6 +26,7 @@ namespace exam_01.Models
     public string Confirm { get; set; }
 
     // navigation property
+    public List<Meetup> MeetupsCreated { get; set; }
     public List<Reservation> MeetupList { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
