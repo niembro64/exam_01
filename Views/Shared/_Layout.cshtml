@@ -8,24 +8,23 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body class="d-flex flex-column align-items-center">
     @if (@ViewBag.Session_UserId != null)
     {
+        <div class="d-flex justify-content-between align-items-baseline m-2 p-2 bg-light border rounded">
+            <div class="btn-group" role="group">
+                <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Meetups">Meetups</a>
+                <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="NewMeetup">+ Meetup</a>
+            </div>
+            <div class="d-flex flex-row m-2 p-0">
+                <p class="my-0 mx-2 p-0">@ViewBag.Session_Name</p>
+                <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p>
+            </div>
+            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+        </div>
     }
-    <div class="d-flex justify-content-between align-items-baseline m-2 p-2 bg-light border rounded">
-        <div class="btn-group" role="group">
-            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Meetups">Meetups</a>
-            <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="NewMeetup">+ Meetup</a>
-        </div>
-        <div class="d-flex flex-row m-2 p-0">
-            @* <p class="my-0 mx-2 p-0">@ViewBag.Session_FirstName</p>
-                <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p> *@
-            <p class="my-0 mx-2 p-0">Name</p>
-        </div>
-
-        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
-    </div>
     @RenderBody()
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
