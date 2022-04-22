@@ -21,59 +21,65 @@
         <tbody>
             @foreach (Meetup x in @ViewBag.AllMeetups)
             {
-                <tr>
-                    <td>
-                        <p>@x.MeetupId</p>
-                    </td>
-                    <td>
-                        <p><a class="btn btn-success" href="/meetups/@x.MeetupId">@x.Title</a></p>
-                    </td>
-                    <td>
-                        <p>@x.Date</p>
-                    </td>
-                    <td>
-                        <p>@x.Duration_String</p>
-                    </td>
-                    <td>
-                        <p>@x.Duration_Int</p>
-                    </td>
-                    @if (@x.UserId == @ViewBag.Session_UserId)
-                    {
-                        <td><a class="btn btn-danger" href="/meetups/delete/@x.MeetupId">Delete</a></td>
-                    }
-                    @if (@x.UserId != @ViewBag.Session_UserId)
-                    {
-                        bool found = false;
-                        @* int rId = 0; *@
-                        @foreach (Reservation a in @ViewBag.OneUserReservations)
+
+                @if (x.Date > DateTime.Now)
+                {
+
+
+                    <tr>
+                        <td>
+                            <p>@x.MeetupId</p>
+                        </td>
+                        <td>
+                            <p><a class="btn btn-success" href="/meetups/@x.MeetupId">@x.Title</a></p>
+                        </td>
+                        <td>
+                            <p>@x.Date</p>
+                        </td>
+                        <td>
+                            <p>@x.Duration_String</p>
+                        </td>
+                        <td>
+                            <p>@x.Duration_Int</p>
+                        </td>
+                        @if (@x.UserId == @ViewBag.Session_UserId)
                         {
-                            @if (a.MeetupId == x.MeetupId)
+                            <td><a class="btn btn-danger" href="/meetups/delete/@x.MeetupId">Delete</a></td>
+                        }
+                        @if (@x.UserId != @ViewBag.Session_UserId)
+                        {
+                            bool found = false;
+                            @* int rId = 0; *@
+                            @foreach (Reservation a in @ViewBag.OneUserReservations)
                             {
-                                found = true;
-                                rId = a.ReservationId;
+                                @if (a.MeetupId == x.MeetupId)
+                                {
+                                    found = true;
+                                    rId = a.ReservationId;
+                                }
+                            }
+                            if (found && rId != 0)
+                            {
+                                <td>
+                                    <a class="btn btn-warning" href="/reservations/delete/@rId">De-RSVP</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <form action="/reservations/reserve" method="post">
+                                        <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
+                                        <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
+                                        <input type="submit" value="RSVP" class="btn btn-primary my-3">
+                                    </form>
+                                </td>
                             }
                         }
-                        if (found && rId != 0)
-                        {
-                            <td>
-                                <a class="btn btn-warning" href="/reservations/delete/@rId">De-RSVP</a>
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                <form action="/reservations/reserve" method="post">
-                                    <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
-                                    <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
-                                    <input type="submit" value="RSVP" class="btn btn-primary my-3">
-                                </form>
-                            </td>
-                        }
-                    }
-                    <td>
-                        <p>@x.Creator.Name</p>
-                    </td>
-                </tr>
+                        <td>
+                            <p>@x.Creator.Name</p>
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
