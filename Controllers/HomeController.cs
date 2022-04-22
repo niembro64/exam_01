@@ -48,7 +48,7 @@ namespace exam_01.Controllers
       return Redirect("/login");
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      [HttpGet("meetups/delete/{mId}")]
+    [HttpGet("meetups/delete/{mId}")]
     public IActionResult DeleteMeetup(int mId)
     {
       Console.WriteLine($"+++++++DELETING MEETUP : {mId}");
@@ -115,6 +115,20 @@ namespace exam_01.Controllers
         ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
         return View("NewMeetup");
       }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    [HttpPost("reservations/reserve")]
+    public IActionResult AddReservation(Reservation newReservation)
+    {
+      Console.WriteLine("--------------------------RESERVING");
+      if (ModelState.IsValid)
+      {
+        _context.Reservations.Add(newReservation);
+        _context.SaveChanges();
+
+        return RedirectToAction("Meetups");
+      }
+      return View("Meetups");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     [HttpPost("users/login")]
