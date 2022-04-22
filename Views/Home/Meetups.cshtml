@@ -1,102 +1,105 @@
 @{
-  ViewData["Title"] = "Meetups";
-  int rId = 0; 
+    ViewData["Title"] = "Meetups";
+    int rId = 0;
 }
 @model Meetup
 
 <div class="text-center">
-  <h1>Meetups</h1>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">MeetupId</th>
-        <th scope="col">Title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Duration_String</th>
-        <th scope="col">Duration_Int By</th>
-        <th scope="col">Functions</th>
-        <th scope="col">UserId</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach (Meetup x in @ViewBag.AllMeetups)
-      {
-        <tr>
-          <td>
-            <p>@x.MeetupId</p>
-          </td>
-          <td>
-            <p><a class="btn btn-success" href="/meetups/@x.MeetupId">@x.Title</a></p>
-          </td>
-          <td>
-            <p>@x.Date</p>
-          </td>
-          <td>
-            <p>@x.Duration_String</p>
-          </td>
-          <td>
-            <p>@x.Duration_Int</p>
-          </td>
-          @if (@x.UserId == @ViewBag.Session_UserId)
-          {
-            <td><a class="btn btn-danger" href="/meetups/delete/@x.MeetupId">Delete</a></td>
-          }
-          @if (@x.UserId != @ViewBag.Session_UserId)
-          {
-            bool found = false;
-            @* int rId = 0; *@
-            @foreach (Reservation a in @ViewBag.OneUserReservations)
+    <h1>Meetups</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">MeetupId</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Duration_String</th>
+                <th scope="col">Duration_Int By</th>
+                <th scope="col">Functions</th>
+                <th scope="col">UserId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Meetup x in @ViewBag.AllMeetups)
             {
-              @if (a.MeetupId == x.MeetupId)
-              {
-                found = true;
-                rId = a.ReservationId;
-              }
+                <tr>
+                    <td>
+                        <p>@x.MeetupId</p>
+                    </td>
+                    <td>
+                        <p><a class="btn btn-success" href="/meetups/@x.MeetupId">@x.Title</a></p>
+                    </td>
+                    <td>
+                        <p>@x.Date</p>
+                    </td>
+                    <td>
+                        <p>@x.Duration_String</p>
+                    </td>
+                    <td>
+                        <p>@x.Duration_Int</p>
+                    </td>
+                    @if (@x.UserId == @ViewBag.Session_UserId)
+                    {
+                        <td><a class="btn btn-danger" href="/meetups/delete/@x.MeetupId">Delete</a></td>
+                    }
+                    @if (@x.UserId != @ViewBag.Session_UserId)
+                    {
+                        bool found = false;
+                        @* int rId = 0; *@
+                        @foreach (Reservation a in @ViewBag.OneUserReservations)
+                        {
+                            @if (a.MeetupId == x.MeetupId)
+                            {
+                                found = true;
+                                rId = a.ReservationId;
+                            }
+                        }
+                        if (found && rId != 0)
+                        {
+                            <td>
+                                <a class="btn btn-warning" href="/reservations/delete/@rId">De-RSVP</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <form action="/reservations/reserve" method="post">
+                                    <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
+                                    <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
+                                    <input type="submit" value="RSVP" class="btn btn-primary my-3">
+                                </form>
+                            </td>
+                        }
+                    }
+                    <td>
+                        <p>@x.Creator.Name</p>
+                    </td>
+                </tr>
             }
-            if (found && rId != 0)
-            {
-              <td>
-                <a class="btn btn-warning" href="/reservations/delete/@rId">De-RSVP</a>
-              </td>
-            }
-            else
-            {
-              <td>
-                <form action="/reservations/reserve" method="post">
-                  <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
-                  <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
-                  <input type="submit" value="RSVP" class="btn btn-primary my-3">
-                </form>
-              </td>
-            }
-          }
-        </tr>
-      }
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 
-  @* <form action="/reservations/reserve" method="post">
-    <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
-    <input type="hidden" asp-for="WeddingId" value="2">
-    <input class="btn btn-info" type="button" value="RSVP">
-    </form> *@
+    @* <form action="/reservations/reserve" method="post">
+        <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
+        <input type="hidden" asp-for="WeddingId" value="2">
+        <input class="btn btn-info" type="button" value="RSVP">
+        </form> *@
 
-  @* <form class="d-flex flex-column align-items-start m-3" action="/reservations/reserve" method="post">
-    <h3>New Reservation</h3>
+    @* <form class="d-flex flex-column align-items-start m-3" action="/reservations/reserve" method="post">
+        <h3>New Reservation</h3>
 
-    <label for="UserId">UserId</label>
-    <input asp-for="UserId" value=@ViewBag.Session_UserId>
-    <span asp-validation-for="UserId" class="text-danger"></span>
+        <label for="UserId">UserId</label>
+        <input asp-for="UserId" value=@ViewBag.Session_UserId>
+        <span asp-validation-for="UserId" class="text-danger"></span>
 
-    <label for="WeddingId">WeddingId</label>
-    <input asp-for="WeddingId">
-    <span asp-validation-for="WeddingId" class="text-danger"></span>
+        <label for="WeddingId">WeddingId</label>
+        <input asp-for="WeddingId">
+        <span asp-validation-for="WeddingId" class="text-danger"></span>
 
-    <input type="submit" value="Create" class="btn btn-primary my-3">
-    </form> *@
+        <input type="submit" value="Create" class="btn btn-primary my-3">
+        </form> *@
 
-  @* @foreach (Reservation r in @ViewBag.OneUserReservations)
-    {
-    <p>@r.WeddingId @r.UserId</p>
-    } *@
+    @* @foreach (Reservation r in @ViewBag.OneUserReservations)
+        {
+        <p>@r.WeddingId @r.UserId</p>
+        } *@
 </div>
