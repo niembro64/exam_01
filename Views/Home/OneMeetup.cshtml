@@ -1,0 +1,15 @@
+@{
+  ViewData["Title"] = "One Meetup";
+}
+
+<h1>@ViewBag.OneMeetup.Title</h1>
+<h3> Date: @ViewBag.OneMeetup.Date</h3>
+
+@* @foreach (Reservation a in @ViewBag.OneWeddingReservations.UserList)
+  {
+  <p>@a.UserId</p>
+  } *@
+@foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
+{
+  <p>@a.User.UserId @a.User.Name</p>
+}

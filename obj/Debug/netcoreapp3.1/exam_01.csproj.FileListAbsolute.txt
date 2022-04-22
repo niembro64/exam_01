@@ -61,3 +61,4 @@ C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\_LoginPartial.cshtml.g.cs
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Meetups.cshtml.g.cs
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewMeetup.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\OneMeetup.cshtml.g.cs

@@ -92,20 +92,53 @@ namespace exam_01.Controllers
       return View();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [HttpGet("reservations/delete/{rId}")]
+    public IActionResult DeleteReservation(int rId)
+    {
+      Console.WriteLine($"+++++++DELETING RESERVATION : {rId}");
+      Reservation ReservationToDelete = _context.Reservations.SingleOrDefault(s => s.ReservationId == rId);
+      _context.Reservations.Remove(ReservationToDelete);
+      _context.SaveChanges();
+      return RedirectToAction("Meetups");
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [HttpGet("/meetups/{mId}")]
+    public IActionResult OneMeetup(int mId)
+    {
+      ViewBag.OneMeetup = _context.Meetups.FirstOrDefault(w => w.MeetupId == mId);
+
+      ViewBag.OneMeetupReservations = _context.Meetups.Include(s => s.UserList).FirstOrDefault(w => w.MeetupId == mId);
+
+      // omg it works
+      ViewBag.OneMeetupFull = _context.Meetups.Include(s => s.UserList).ThenInclude(d => d.User).FirstOrDefault(a => a.MeetupId == mId);
+
+      ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
+      ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
+
+      ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
+      ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
+      return View();
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [HttpPost("meetups/add")]
     public IActionResult AddMeetup(Meetup newMeetup)
     {
+      Console.WriteLine($"ADDING MEETUP {newMeetup.Title}");
       if (ModelState.IsValid)
       {
         _context.Meetups.Add(newMeetup);
         _context.SaveChanges();
+
+        int mId = newMeetup.MeetupId;
 
         ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
         ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
         ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
         ViewBag.Session_Name = HttpContext.Session.GetString("Session_Name");
 
-        return RedirectToAction("Meetups");
+        // return RedirectToAction("OneMeetup(mId)");
+        return Redirect($"/meetups/{mId}");
+        // return RedirectToAction($"/meetups/{mId}");
       }
       else
       {
