@@ -18,6 +18,7 @@ namespace exam_01.Models
     [Required]
     [DataType(DataType.Password)]
     [StringLength(255, MinimumLength = 8)]
+    [CustomValidation(typeof(CustomValidationMethods), nameof(CustomValidationMethods.ValidatePassword))]
     public string Password { get; set; }
     [NotMapped]
     [DataType(DataType.Password)]
