@@ -57,6 +57,7 @@ C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\exam_01.dll
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\exam_01.pdb
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\exam_01.genruntimeconfig.cache
-C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Xxx.cshtml.g.cs
-C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Yyy.cshtml.g.cs
-C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Zzz.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Login.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\_LoginPartial.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\Meetups.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\exam_01\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewMeetup.cshtml.g.cs

@@ -26,20 +26,20 @@ namespace exam_01.Controllers
 
     public IActionResult Index()
     {
-      return Redirect("/xxx");
+      return Redirect("/login");
     }
-    [HttpGet("/xxx")]
-    public IActionResult Xxx()
+    [HttpGet("/login")]
+    public IActionResult Login()
     {
       return View();
     }
-    [HttpGet("/yyy")]
-    public IActionResult Yyy()
+    [HttpGet("/meetups")]
+    public IActionResult Meetups()
     {
       return View();
     }
-    [HttpGet("/zzz")]
-    public IActionResult Zzz()
+    [HttpGet("/new")]
+    public IActionResult NewMeetup()
     {
       return View();
     }
