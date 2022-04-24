@@ -3,25 +3,25 @@
 }
 @model User
 
-<h1>Users Reserve Meetups</h1>
+<h1>Users RSVP Events</h1>
 <div class="d-flex justify-content-center align-items-start flex-row flex-wrap">
 
   <form class="d-flex flex-column align-items-start m-3" action="/users/add" method="post">
     <h3>Register</h3>
 
-    <label for="Name">Name</label>
+    <label class="mt-2" for="Name">Name</label>
     <input asp-for="Name">
     <span asp-validation-for="Name" class="text-danger"></span>
 
-    <label for="Email">Email</label>
+    <label class="mt-2" for="Email">Email</label>
     <input asp-for="Email">
     <span asp-validation-for="Email" class="text-danger"></span>
 
-    <label for="Password">Password</label>
+    <label class="mt-2" for="Password">Password</label>
     <input asp-for="Password">
     <span asp-validation-for="Password" class="text-danger"></span>
 
-    <label for="Confirm">Confirm Password</label>
+    <label class="mt-2" for="Confirm">Confirm Password</label>
     <input asp-for="Confirm">
     <span asp-validation-for="Confirm" class="text-danger"></span>
 

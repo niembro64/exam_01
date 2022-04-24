@@ -8,28 +8,32 @@
     <form class="d-flex flex-column align-items-start m-3" action="/meetups/add" method="post">
         <h3>New Meetup</h3>
 
-        <label for="Title">Title</label>
+
+        <label class="mt-2" for="Title">Title</label>
         <input asp-for="Title">
         <span asp-validation-for="Title" class="text-danger"></span>
 
-        <label for="Date">Date</label>
-        <input asp-for="Date">
+
+        <label class="mt-2" for="Date">Date</label>
+        <input textmode="Date" asp-for="Date">
         <span asp-validation-for="Date" class="text-danger"></span>
 
-        <div class="form-group">
-            <label for="Duration_String">Duration Units</label>
-            <select asp-for="Duration_String" class="form-control">
-                <option value="Days">Days</option>
-                <option value="Hours">Hours</option>
-                <option value="Minutes">Minutes</option>
-            </select>
-        </div>
 
-        <label for="Duration_Int">Duration</label>
+
+
+        <label class="mt-2" for="Duration_Int">Duration</label>
         <input asp-for="Duration_Int">
         <span asp-validation-for="Duration_Int" class="text-danger"></span>
 
-        <label for="Description">Description</label>
+
+        @* <label class="mt-2" for="Duration_String">Units</label> *@
+        <select asp-for="Duration_String" class="form-select mt-1">
+            <option class="dropdown-item" value="Days">Days</option>
+            <option class="dropdown-item" value="Hours">Hours</option>
+            <option class="dropdown-item" value="Minutes">Minutes</option>
+        </select>
+
+        <label class="mt-2" for="Description">Description</label>
         <input asp-for="Description">
         <span asp-validation-for="Description" class="text-danger"></span>
 
