@@ -7,6 +7,9 @@
     <title>@ViewData["Title"] | Users RSVP Events</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @* <link id="icon" rel="shortcut icon" href="{{ url_for('static', filename='event.png') }}" /> *@
+    @* <link rel="favicon" href="~/event.png"> *@
+    <link href="~/party.png" rel="shortcut icon" type="image/x-icon" />
 </head>
 
 <body class="d-flex flex-column align-items-center">
@@ -15,14 +18,14 @@
         <div class="d-flex justify-content-between align-items-baseline m-2 p-2 bg-light border rounded">
             <div class="btn-group" role="group">
                 @* <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a> *@
-                <a class="btn btn-secondary px-4" asp-area="" asp-controller="Home" asp-action="Meetups">Home</a>
-                <a class="btn btn-secondary px-4" asp-area="" asp-controller="Home" asp-action="NewMeetup">+ Add</a>
+                <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="Meetups">Home</a>
+                <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="NewMeetup">+ Add</a>
             </div>
             <div class="d-flex flex-row mx-3 p-0">
                 <p class="my-0 mx-2 p-0">@ViewBag.Session_Name</p>
                 <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p>
             </div>
-            <a class="btn btn-secondary px-4" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+            <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
         </div>
     }
     @RenderBody()
