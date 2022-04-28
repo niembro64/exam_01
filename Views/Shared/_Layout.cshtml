@@ -13,9 +13,14 @@
 </head>
 
 <body class="d-flex flex-column align-items-center">
+    <div class="d-flex">
+        <a href="" class="btn btn-light px-2 py-0 my-1 mx-2">About Users RSVP Events</a>
+        <a href="http://52.70.161.67/projects" class="btn btn-light px-2 py-0 my-1 mx-2">Eric Niemeyer Projects</a>
+        
+    </div>
     @if (@ViewBag.Session_UserId != null)
     {
-        <div class="d-flex justify-content-between align-items-baseline m-2 p-2 bg-light border rounded">
+        <div class="d-flex justify-content-between align-items-baseline m-1 p-2 bg-light border rounded">
             <div class="btn-group" role="group">
                 @* <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a> *@
                 <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="Meetups">Home</a>

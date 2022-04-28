@@ -5,16 +5,19 @@
 @model Meetup
 
 <div class="text-center">
-    <h1>Events</h1>
+    <div class="d-flex flex-row align-items-center justify-content-center py-2">
+        <img class="p-0 my-0 mx-2 border rounded border-dark" height="35px" src="~/party.png" alt="party">
+        <h1 class="p-0 my-0 mx-2">Events</h1>
+    </div>
     <table class="table table-hover m-0 p-0">
         <thead class="border-0">
             <tr>
                 @* <th scope="col">MeetupId</th> *@
                 @* <th class="border-0" scope="col">Host</th> *@
                 <th class="border-0" scope="col">Event</th>
-                <th class="border-0" scope="col">DateTime</th>
+                <th class="border-0" scope="col">Date</th>
 
-                <th class="border-0" scope="col">Going</th>
+                <th class="border-0" scope="col">RSVP</th>
 
             </tr>
         </thead>
@@ -24,25 +27,33 @@
 
                 @if (x.Date > DateTime.Now)
                 {
-                    <tr>
 
-
-                        @* <td class="align-middle">
-                            <p class="align-middle">@x.MeetupId</p>
-                            </td> *@
-                        <td class="align-middle">
-                            <p class="m-0 p-0"><a class="btn btn-warning btn-block my-2"
-                            href="/meetups/@x.MeetupId">@x.Creator.Name's @x.Title</a></p>
-                        </td>
-                        <td class="align-middle">
-                            <p class="m-0 p-0">@x.Date</p>
-                        </td>
-
-
+                    <tr class="bg-light">
 
                         @if (@x.UserId == @ViewBag.Session_UserId)
                         {
-                            <td class="align-middle"><a class="btn btn-danger btn-block my-2" href="/meetups/delete/@x.MeetupId">✖ Delete</a></td>
+                            <td class="align-middle">
+                                <p class="m-0 p-0"><a class="btn btn-primary btn-block my-2"
+                            href="/meetups/@x.MeetupId">Your @x.Title</a></p>
+                            </td>
+
+
+                        }
+                        else
+                        {
+                            <td class="align-middle">
+                                <p class="m-0 p-0"><a class="btn btn-light btn-block my-2"
+                            href="/meetups/@x.MeetupId">@x.Creator.Name's @x.Title</a></p>
+                            </td>
+                        }
+                        <td class="align-middle">
+                            <p class="m-0 p-0">@x.Date.ToString("MMM dd")</p>
+                            <p class="m-0 p-0 text-muted"><small>@x.Date.ToString("yyyy")</small></p>
+                        </td>
+                        @if (@x.UserId == @ViewBag.Session_UserId)
+                        {
+                            <td class="align-middle"><a class="btn btn-danger btn-block my-2" href="/meetups/delete/@x.MeetupId">✖
+                                    Delete</a></td>
 
                         }
                         @if (@x.UserId != @ViewBag.Session_UserId)
@@ -60,7 +71,9 @@
                             if (found && rId != 0)
                             {
                                 <td class="align-middle">
-                                    <a class="btn btn-primary btn-block my-2" href="/reservations/delete/@rId">⭐ Going</a>
+                                    <a class="btn btn-success btn-block my-2" href="/reservations/delete/@rId">
+                                        ⭐
+                                    </a>
                                 </td>
                             }
                             else
@@ -69,7 +82,7 @@
                                     <form action="/reservations/reserve" method="post">
                                         <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
                                         <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>
-                                        <input type="submit" value="☁ RSVP" class="btn btn-outline-primary btn-block my-2">
+                                        <input type="submit" value="☁" class="btn btn-outline-success btn-block my-2">
                                     </form>
                                 </td>
                             }
