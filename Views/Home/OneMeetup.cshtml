@@ -10,6 +10,12 @@
 }
 @model Meetup
 
+@foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
+{
+  numGuests++;
+
+}
+
 
 @* <h1>@ViewBag.OneMeetup.Creator.Name's @ViewBag.OneMeetup.Title</h1> *@
 @if (@ViewBag.OneMeetup.Creator.Name != "")
@@ -18,8 +24,7 @@
 }
 
 
-<div
-  class="d-flex flex-column align-items-center flex-wrap w-100 bg-dark rounded-bottom p-0 m-0 border border-top-0">
+<div class="d-flex flex-column align-items-center flex-wrap w-100 bg-dark rounded-bottom p-0 m-0 border border-top-0">
   @if (@ViewBag.OneMeetup.Description != "" && @ViewBag.OneMeetup.Description != null)
   {
     <h4 class="bg-warning text-dark rounded-bottom px-4 py-2 border border-top-0">
@@ -46,6 +51,27 @@
   <div class="d-flex flex-row flex-wrap justify-content-center rounded" id="oneBoxBig">
     @* <div id="oneBox" class="d-flex flex-column flex-wrap align-items-center justify-content-center m-2 w-25 bg-dark
       border border-light rounded"> *@
+
+
+    <div id="oneBoxr" class="text-light">
+      <p>@ViewBag.OneMeetup.Creator.Name is hosting an event called
+        "@ViewBag.OneMeetup.Title" on @ViewData["DayOfWeek"], @ViewData["MonthDay"]. </p>@if (@numGuests
+      ==
+      0)
+      {
+        <p>So far there are no people coming. </p>
+      }
+      else if (@numGuests == 1)
+      {
+        <p>So far there is one person coming. </p>
+      }
+      else
+      {
+        <p>So far there are @numGuests people coming. </p>
+      }
+      <p><i>"@ViewBag.OneMeetup.Description"</i>
+      </p>
+    </div>
     <div id="oneBoxl">
       @if (@ViewBag.OneMeetup.Creator.UserId == @ViewBag.Session_UserId)
       {
@@ -97,7 +123,7 @@
 
           @foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
           {
-            numGuests++;
+            @* numGuests++; *@
             <tr class="border-0">
 
               @* <th scope="row"></th> *@
@@ -107,26 +133,6 @@
           }
         </tbody>
       </table>
-    </div>
-
-    <div id="oneBoxr" class="text-light">
-      <p>@ViewBag.OneMeetup.Creator.Name is hosting an event called
-        "@ViewBag.OneMeetup.Title" on @ViewData["DayOfWeek"], @ViewData["MonthDay"]. </p>@if (@numGuests
-      ==
-      0)
-      {
-        <p>So far there are no people coming. </p>
-      }
-      else if (@numGuests == 1)
-      {
-        <p>So far there is one person coming. </p>
-      }
-      else
-      {
-        <p>So far there are @numGuests people coming. </p>
-      }
-      <p><i>"@ViewBag.OneMeetup.Description"</i>
-      </p>
     </div>
 
 
