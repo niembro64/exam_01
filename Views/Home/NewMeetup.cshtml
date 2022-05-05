@@ -1,12 +1,13 @@
 @{
-    ViewData["Title"] = "New Meetup";
+    ViewData["Title"] = "New Event";
+    ViewData["Header"] = "New Event";
 }
 @model Meetup
 
-<div class="d-flex justify-content-center align-items-start flex-row flex-wrap">
 
-    <form class="d-flex flex-column align-items-start m-3" action="/meetups/add" method="post">
-        <h3>New Meetup</h3>
+    <form class="d-flex flex-column align-items-start m-1 p-3 border rounded bg-light shadow" action="/meetups/add"
+        method="post">
+        
 
 
         <label class="mt-2" for="Title">Title</label>
@@ -43,6 +44,5 @@
 
         <input type="hidden" name="UserId" value=@ViewBag.Session_UserId>
 
-        <input type="submit" value="Create" class="btn btn-primary my-3">
+        <input type="submit" value="Create" class="btn btn-primary my-3 shadow-sm">
     </form>
-</div>

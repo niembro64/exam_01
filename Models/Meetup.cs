@@ -55,7 +55,8 @@ namespace exam_01.Models
 
       if (string.IsNullOrWhiteSpace(input))
       {
-        throw new Exception("Password should not be empty");
+        // throw new Exception("Password should not be empty");
+        return new ValidationResult("Password should not be empty");
       }
 
       var hasNumber = new Regex(@"[0-9]+");

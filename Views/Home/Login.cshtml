@@ -1,35 +1,39 @@
 @{
   ViewData["Title"] = "Login";
+  ViewData["Header"] = "Users RSVP Events";
 }
 @model User
 
-<h1>Users RSVP Events</h1>
-<div class="d-flex justify-content-center align-items-start flex-row flex-wrap">
+@* <h1>Users RSVP Events</h1> *@
+<div class="d-flex justify-content-center align-items-start flex-row flex-wrap w-100">
 
-  <form class="d-flex flex-column align-items-start m-3" action="/users/add" method="post">
-    <h3>Register</h3>
+    <form class="d-flex flex-column align-items-start m-1 p-3 border rounded bg-light shadow" style="width: 17rem;" action="/users/add"
+      method="post">
+      <h3>New User</h3>
 
-    <label class="mt-2" for="Name">Name</label>
-    <input asp-for="Name">
-    <span asp-validation-for="Name" class="text-danger"></span>
+      <label class="mt-2" for="Name">Name</label>
+      <input asp-for="Name">
+      <span asp-validation-for="Name" class="text-danger text-wrap"></span>
 
-    <label class="mt-2" for="Email">Email</label>
-    <input asp-for="Email">
-    <span asp-validation-for="Email" class="text-danger"></span>
+      <label class="mt-2" for="Email">Email</label>
+      <input asp-for="Email">
+      <span asp-validation-for="Email" class="text-danger text-wrap"></span>
 
-    <label class="mt-2" for="Password">Password</label>
-    <input asp-for="Password">
-    <span asp-validation-for="Password" class="text-danger"></span>
+      <label class="mt-2" for="Password">Password</label>
+      <input asp-for="Password">
+      <span asp-validation-for="Password" class="text-danger text-wrap"></span>
 
-    <label class="mt-2" for="Confirm">Confirm Password</label>
-    <input asp-for="Confirm">
-    <span asp-validation-for="Confirm" class="text-danger"></span>
+      <label class="mt-2" for="Confirm">Confirm Password</label>
+      <input asp-for="Confirm">
+      <span asp-validation-for="Confirm" class="text-danger text-wrap"></span>
 
-    <input type="submit" value="Create" class="btn btn-primary my-3">
-  </form>
+      <input type="submit" value="Register" class="btn btn-primary my-3 shadow-sm">
+
+
+    </form>
+  
   <partial name="_LoginPartial" />
 </div>
-
 
 @* <div class="text-center">
   <div class="row">

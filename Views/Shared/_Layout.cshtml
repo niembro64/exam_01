@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] | Users RSVP Events</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/Bootstrap-4-Floating-Labels-master/floating-labels.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @* <link id="icon" rel="shortcut icon" href="{{ url_for('static', filename='event.png') }}" /> *@
     @* <link rel="favicon" href="~/event.png"> *@
@@ -13,27 +14,46 @@
 </head>
 
 <body class="d-flex flex-column align-items-center">
-    <div class="d-flex">
-        <a href="" class="btn btn-light px-2 py-0 my-1 mx-2">About Users RSVP Events</a>
-        <a href="http://52.70.161.67/projects" class="btn btn-light px-2 py-0 my-1 mx-2">Eric Niemeyer Projects</a>
-        
-    </div>
-    @if (@ViewBag.Session_UserId != null)
-    {
-        <div class="d-flex justify-content-between align-items-baseline m-1 p-2 bg-light border rounded">
-            <div class="btn-group" role="group">
-                @* <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a> *@
-                <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="Meetups">Home</a>
-                <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="NewMeetup">+ Add</a>
-            </div>
-            <div class="d-flex flex-row mx-3 p-0">
-                <p class="my-0 mx-2 p-0">@ViewBag.Session_Name</p>
-                <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p>
-            </div>
-            <a class="btn btn-primary px-4" asp-area="" asp-controller="Home" asp-action="LogOut">Log Out</a>
+<div class="background-image"></div>
+
+<div class="d-flex flex-column align-items-center shadow w-100 bg-light" id="header">
+        <div class="d-flex">
+            <a href="" class="btn btn-light px-2 py-0 my-1 mx-2 shadow">About Users RSVP Events</a>
+            <a href="http://52.70.161.67/projects" class="btn btn-light px-2 py-0 my-1 mx-2 shadow">Eric Niemeyer
+                Projects</a>
+
         </div>
-    }
-    @RenderBody()
+        @if (@ViewBag.Session_UserId != null)
+        {
+            <div class="d-flex justify-content-between align-items-baseline m-1 p-2 bg-light border rounded shadow">
+                <div class="btn-group" role="group">
+                    @* <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Login">Login</a> *@
+                    <a class="btn btn-primary px-4 shadow-sm" asp-area="" asp-controller="Home"
+                    asp-action="Meetups">Home</a>
+                    <a class="btn btn-primary px-4 shadow-sm" asp-area="" asp-controller="Home" asp-action="NewMeetup">New</a>
+                </div>
+                <div class="d-flex flex-row mx-3 p-0">
+                    <p class="my-0 mx-2 p-0">@ViewBag.Session_Name</p>
+                    <p class="my-0 mx-2 p-0">#@ViewBag.Session_UserId</p>
+                </div>
+                <a class="btn btn-primary px-4 shadow-sm" asp-area="" asp-controller="Home" asp-action="LogOut">Leave</a>
+            </div>
+        }
+        <div class="d-flex flex-row align-items-center" id="title_div">
+            <img class="p-0 my-0 mx-2 border rounded shadow" height="35px" src="~/party.png" alt="party">
+            <h1>@ViewData["Header"]</h1>
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-center" id="render_body">
+        @RenderBody()
+    </div>
+   <div id="floater" class="d-flex flex-column align-items-center shadow w-100 bg-light shadow p-0 m-0">
+
+        <p>
+            2022 - Eric Niemeyer
+        </p>
+
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

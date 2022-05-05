@@ -18,7 +18,8 @@ a {
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -43,7 +44,7 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
 button.accept-policy {
@@ -68,4 +69,47 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+#header {
+  position: sticky;
+  top: 0px;
+}
+
+#th_header {
+  position: sticky;
+  top: 105px;
+}
+
+#floater {
+  /* height: 30px;
+  width: auto;  */
+  /* background-color: white; */
+  position: fixed;
+  bottom: 0px;
+
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+  /* padding: 20px; */
+}
+
+.background-image {
+  position: fixed;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  background-image: url("https://legacy.travelnoire.com/wp-content/uploads/2019/06/gettyimages-921837638-170667a.jpg");
+  width: 1200px;
+  height: 800px;
+  /* -webkit-filter: saturate(30%);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px); */
+  filter: blur(3px) saturate(30%);
 }

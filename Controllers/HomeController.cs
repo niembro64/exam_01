@@ -202,7 +202,7 @@ namespace exam_01.Controllers
     [HttpPost("users/add")]
     public IActionResult AddUser(User newUser)
     {
-      if (ModelState.IsValid)
+      if (ModelState.IsValid && newUser.Password != null)
       {
 
         // Duplicate Emails
