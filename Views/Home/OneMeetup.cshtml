@@ -2,54 +2,123 @@
   ViewData["Title"] = "One Meetup";
   ViewData["Header"] = "";
   ViewData["Day"] = @ViewBag.OneMeetup.Date.ToString("d");
+  ViewData["MonthDay"] = @ViewBag.OneMeetup.Date.ToString("MMM dd");
+  ViewData["DayOfWeek"] = @ViewBag.OneMeetup.Date.DayOfWeek;
   ViewData["Time"] = @ViewBag.OneMeetup.Date.ToString("HH:mm");
+  int numGuests = 0;
+  int rId = 0;
+}
+@model Meetup
+
+
+@* <h1>@ViewBag.OneMeetup.Creator.Name's @ViewBag.OneMeetup.Title</h1> *@
+@if (@ViewBag.OneMeetup.Creator.Name != "")
+{
+  ViewData["Header"] = $"{@ViewBag.OneMeetup.Creator.Name}'s {@ViewBag.OneMeetup.Title}";
 }
 
-  @* <h1>@ViewBag.OneMeetup.Creator.Name's @ViewBag.OneMeetup.Title</h1> *@
-  @if (@ViewBag.OneMeetup.Creator.Name != "")
+
+<div
+  class="d-flex flex-column align-items-center flex-wrap w-75 bg-dark rounded-bottom pb-4 px-2 border border-top-0 border-light shadow">
+  @if (@ViewBag.OneMeetup.Description != "" && @ViewBag.OneMeetup.Description != null)
   {
-    ViewData["Header"] = $"{@ViewBag.OneMeetup.Creator.Name}'s {@ViewBag.OneMeetup.Title}";
+    <h4 class="bg-warning text-dark rounded-bottom px-4 py-2 border border-top-0 border-light shadow">
+      <i>"@ViewBag.OneMeetup.Description"</i>
+    </h4>
+
   }
-  <p class="bg-light rounded-bottom px-4 py-2"><i>"@ViewBag.OneMeetup.Description"</i></p>
+  @* <table class="table table-hover m-0 p-0 mt-3 shadow">
+    <thead>
+    <th id="th_header" class="bg-primary text-light" scope="col">Date</th>
+    <th id="th_header" class="bg-primary text-light" scope="col">Time</th>
+    </thead>
 
+    <tbody class="bg-light border rounded">
+    <td>
+    @ViewData["Day"]
+    </td>
+    <td>
+    @ViewData["Time"]
+    </td>
+    </tbody>
+    </table> *@
 
-  <div class="d-flex flex-row flex-wrap">
-    <table class="table table-hover m-3 p-1 shadow">
-      <thead>
-        <th id="th_header" class="bg-dark text-light" scope="col">Date</th>
-        <th id="th_header" class="bg-dark text-light" scope="col">Time</th>
-      </thead>
+  <div class="d-flex flex-row flex-wrap align-items-center justify-content-center">
+    @if (@ViewBag.OneMeetup.Creator.UserId == @ViewBag.Session_UserId)
+    {
+      <td class="align-middle border-0"><a class="btn btn-danger my-2"
+        href="/meetups/delete/@ViewBag.OneMeetup.MeetupId">✖
+        </a></td>
 
-      <body>
-        <td class="bg-light">
-          @ViewData["Day"]
+    }
+    @if (@ViewBag.OneMeetup.Creator.UserId != @ViewBag.Session_UserId)
+    {
+      bool found = false;
+      @* int rId = 0; *@
+      @foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
+      {
+        @if (a.UserId == @ViewBag.Session_UserId)
+        {
+          found = true;
+          rId = a.ReservationId;
+        }
+      }
+      if (found && rId != 0)
+      {
+        <td class="align-middle border-0">
+          <a class="btn btn-success my-2 shadow-sm" href="/reservations/delete/@rId">
+            ⭐
+          </a>
         </td>
-        <td class="bg-light">
-          @ViewData["Time"]
+      }
+      else
+      {
+        <td class="align-middle border-0">
+          <form class="shadow-sm" action="/reservations/reserve" method="post">
+            <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
+            <input type="hidden" asp-for="MeetupId" value=@ViewBag.OneMeetup.MeetupId>
+            <input type="submit" value="☁" class="btn btn-outline-success my-2">
+          </form>
         </td>
-      </body>
-    </table>
-
-
-    <table class="table table-hover m-3 p-1 shadow">
+      }
+    }
+    <table class="table table-hover table-dark table-sm m-2 mt-3 p-1 w-25">
       <thead class="border-0">
-        <tr>
-          <th id="th_header" class="bg-dark text-light" scope="col">#</th>
-          <th id="th_header" class="bg-dark text-light" scope="col">RSVPs</th>
+        <tr class="border-0">
+          @* <th id="th_header" class="border-0 text-light" scope="col"></th> *@
+          <th id="th_header" class="border-0 text-light" scope="col">RSVPs</th>
 
         </tr>
       </thead>
-      <tbody class="bg-light border rounded">
+      <tbody>
 
         @foreach (Reservation a in @ViewBag.OneMeetupFull.UserList)
         {
-          <tr>
+          numGuests++;
+          <tr class="border-0">
 
-            <th scope="row">@a.User.UserId</th>
-            <td>@a.User.Name</td>
+            @* <th scope="row"></th> *@
+            <td class="border-0">@a.User.Name</td>
 
           </tr>
         }
       </tbody>
     </table>
+
+    <p class='text-light m-3 p-0 w-50'>@ViewBag.OneMeetup.Creator.Name is hosting an event called
+      "@ViewBag.OneMeetup.Title" on @ViewData["DayOfWeek"], @ViewData["MonthDay"], so far there are @if (@numGuests ==
+      0)
+      {
+        <span>no</span>
+      }
+      else
+      {
+        @numGuests
+      }
+      people coming. <i>"@ViewBag.OneMeetup.Description"</i>
+    </p>
+
+
+
   </div>
+</div>

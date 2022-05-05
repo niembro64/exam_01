@@ -3,25 +3,25 @@
 <form class="d-flex flex-column align-items-start m-1 p-3 border rounded bg-light shadow" style="width: 17rem;"
         action="/users/login" method="post">
         <h3>Login</h3>
-        <div class="border rounded m-1 p-3 bg-secondary text-white d-flex flex-column align-items-center">
-                <p class="p-0 m-0"><i><small>Default:
-                                </small></i></p>
-                <p class="p-0 m-0"><small>
-                        </small></p>
-                <p class="p-0 m-0"><small>johndoe@gmail.com
-                        </small></p>
-                <p class="p-0 m-0"><small>Password1!
-                        </small></p>
-        </div>
-        <label class="mt-2" for="LoginEmail">Email</label>
+
+        <label class="mt-2 mb-0" for="LoginEmail">Email</label>
         <input asp-for="LoginEmail" value="johndoe@gmail.com">
         <span asp-validation-for="LoginEmail" class="text-danger"></span>
 
-        <label class="mt-2" for="LoginPassword">Password</label>
+        <label class="mt-2 mb-0" for="LoginPassword">Password</label>
         <input asp-for="LoginPassword" value="Password1!">
         <span asp-validation-for="LoginPassword" class="text-danger"></span>
 
         <input type="submit" value="Enter" class="btn btn-success my-3 shadow-sm">
+
+
+        <small class="text-muted">      <p class="m-0 p-0">Default:</p><ul>
+                        <li>johndoe@gmail.com</li>
+                        <li>Password1!</li>
+                </ul>
+        </small>
+
+
 
 
 </form>

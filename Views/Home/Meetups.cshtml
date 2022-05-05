@@ -5,29 +5,29 @@
 }
 @model Meetup
 
-    <table class="table table-hover m-0 p-0 shadow">
-        <thead>
-            <tr>
+    <table class="table table-hover m-0 p-0 border border-top-0 border-light shadow">
+        <thead class="border-0">
+            <tr class="border-0">
                 @* <th scope="col">MeetupId</th> *@
                 @* <th class="border-0" scope="col">Host</th> *@
-                <th id="th_header" class="bg-dark text-light" scope="col">Event</th>
-                <th id="th_header" class="bg-dark text-light" scope="col">Date</th>
-                <th id="th_header" class="bg-dark text-light" scope="col">RSVP</th>
+                <th id="th_header" class="bg-dark text-light border-0" scope="col">Event</th>
+                <th id="th_header" class="bg-dark text-light border-0" scope="col">Date</th>
+                <th id="th_header" class="bg-dark text-light border-0" scope="col">RSVP</th>
 
             </tr>
         </thead>
-        <tbody class="bg-light border rounded">
+        <tbody class="bg-light border-0">
             @foreach (Meetup x in @ViewBag.AllMeetups)
             {
 
                 @if (x.Date > DateTime.Now)
                 {
 
-                    <tr>
+                    <tr class="border-0">
 
                         @if (@x.UserId == @ViewBag.Session_UserId)
                         {
-                            <td class="align-middle">
+                            <td class="align-middle border-0">
                                 <p class="m-0 p-0 shadow-sm"><a class="btn btn-primary btn-block my-2"
                             href="/meetups/@x.MeetupId">Your @x.Title</a></p>
                             </td>
@@ -36,18 +36,18 @@
                         }
                         else
                         {
-                            <td class="align-middle">
+                            <td class="align-middle border-0">
                                 <p class="m-0 p-0 shadow-sm"><a class="btn btn-secondary btn-block my-2"
                             href="/meetups/@x.MeetupId">@x.Creator.Name's @x.Title</a></p>
                             </td>
                         }
-                        <td class="align-middle">
+                        <td class="align-middle border-0">
                             <p class="m-0 p-0">@x.Date.ToString("MMM dd")</p>
                             <p class="m-0 p-0 text-muted"><small>@x.Date.ToString("yyyy")</small></p>
                         </td>
                         @if (@x.UserId == @ViewBag.Session_UserId)
                         {
-                            <td class="align-middle"><a class="btn btn-danger btn-block my-2" href="/meetups/delete/@x.MeetupId">✖
+                            <td class="align-middle border-0"><a class="btn btn-danger btn-block my-2" href="/meetups/delete/@x.MeetupId">✖
                                     </a></td>
 
                         }
@@ -65,7 +65,7 @@
                             }
                             if (found && rId != 0)
                             {
-                                <td class="align-middle">
+                                <td class="align-middle border-0">
                                     <a class="btn btn-success btn-block my-2 shadow-sm" href="/reservations/delete/@rId">
                                         ⭐
                                     </a>
@@ -73,7 +73,7 @@
                             }
                             else
                             {
-                                <td class="align-middle">
+                                <td class="align-middle border-0">
                                     <form class="shadow-sm" action="/reservations/reserve" method="post">
                                         <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
                                         <input type="hidden" asp-for="MeetupId" value=@x.MeetupId>

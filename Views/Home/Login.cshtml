@@ -7,31 +7,41 @@
 @* <h1>Users RSVP Events</h1> *@
 <div class="d-flex justify-content-center align-items-start flex-row flex-wrap w-100">
 
-    <form class="d-flex flex-column align-items-start m-1 p-3 border rounded bg-light shadow" style="width: 17rem;" action="/users/add"
-      method="post">
-      <h3>New User</h3>
+  <form class="d-flex flex-column align-items-start m-1 p-3 border rounded bg-light shadow" style="width: 17rem;"
+    action="/users/add" method="post">
+    <h3>New User</h3>
 
-      <label class="mt-2" for="Name">Name</label>
-      <input asp-for="Name">
-      <span asp-validation-for="Name" class="text-danger text-wrap"></span>
+    <label class="mt-2 mb-0" for="Name">Name</label>
+    <input asp-for="Name">
+    <span asp-validation-for="Name" class="text-danger text-wrap"></span>
 
-      <label class="mt-2" for="Email">Email</label>
-      <input asp-for="Email">
-      <span asp-validation-for="Email" class="text-danger text-wrap"></span>
+    <label class="mt-2 mb-0" for="Email">Email</label>
+    <input asp-for="Email">
+    <span asp-validation-for="Email" class="text-danger text-wrap"></span>
 
-      <label class="mt-2" for="Password">Password</label>
-      <input asp-for="Password">
-      <span asp-validation-for="Password" class="text-danger text-wrap"></span>
+    <label class="mt-2 mb-0" for="Password">Password</label>
+    <input asp-for="Password">
+    <span asp-validation-for="Password" class="text-danger text-wrap"></span>
 
-      <label class="mt-2" for="Confirm">Confirm Password</label>
-      <input asp-for="Confirm">
-      <span asp-validation-for="Confirm" class="text-danger text-wrap"></span>
+    <label class="mt-2 mb-0" for="Confirm">Confirm Password</label>
+    <input asp-for="Confirm">
+    <span asp-validation-for="Confirm" class="text-danger text-wrap"></span>
 
-      <input type="submit" value="Register" class="btn btn-primary my-3 shadow-sm">
+    <input type="submit" value="Register" class="btn btn-primary my-3 shadow-sm">
 
+    <small class="text-muted">
+      <p class="m-0 p-0">Password Must Have:</p>
+      <ul>
+        <li>UpperCase</li>
+        <li>LowerCase</li>
+        <li>Number</li>
+        <li>8+ Characters</li>
+        <li>Special Character</li>
+      </ul>
+    </small>
 
-    </form>
-  
+  </form>
+
   <partial name="_LoginPartial" />
 </div>
 

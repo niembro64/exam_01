@@ -61,7 +61,7 @@ namespace exam_01.Models
 
       var hasNumber = new Regex(@"[0-9]+");
       var hasUpperChar = new Regex(@"[A-Z]+");
-      var hasMiniMaxChars = new Regex(@".{8,15}");
+      var hasMiniMaxChars = new Regex(@".{8,100}");
       var hasLowerChar = new Regex(@"[a-z]+");
       var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 

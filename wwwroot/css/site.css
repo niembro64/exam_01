@@ -76,10 +76,10 @@ body {
   top: 0px;
 }
 
-#th_header {
+/* #th_header {
   position: sticky;
   top: 105px;
-}
+} */
 
 #floater {
   /* height: 30px;
@@ -105,8 +105,8 @@ body {
   background-size: cover;
   display: block;
   background-image: url("https://legacy.travelnoire.com/wp-content/uploads/2019/06/gettyimages-921837638-170667a.jpg");
-  width: 1200px;
-  height: 800px;
+  /* width: 1200px;
+  height: 800px; */
   /* -webkit-filter: saturate(30%);
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
