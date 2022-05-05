@@ -85,6 +85,13 @@ namespace exam_01.Controllers
     [HttpGet("/new")]
     public IActionResult NewMeetup()
     {
+
+      if (HttpContext.Session.GetInt32("Session_UserId") == null)
+      {
+        Console.WriteLine("--------------------------Null UseId");
+
+        return RedirectToAction("Logout");
+      }
       ViewBag.AllUsers = _context.Users.OrderBy(a => a.Name).ToList();
       ViewBag.AllMeetups = _context.Meetups.OrderBy(a => a.Date).ToList();
       ViewBag.Session_UserId = HttpContext.Session.GetInt32("Session_UserId");
@@ -108,13 +115,19 @@ namespace exam_01.Controllers
       Reservation ReservationToDelete = _context.Reservations.SingleOrDefault(s => s.ReservationId == rId);
       _context.Reservations.Remove(ReservationToDelete);
       _context.SaveChanges();
-    
-        return Redirect($"/meetups/{mId}");
+
+      return Redirect($"/meetups/{mId}");
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [HttpGet("/meetups/{mId}")]
     public IActionResult OneMeetup(int mId)
     {
+      if (HttpContext.Session.GetInt32("Session_UserId") == null)
+      {
+        Console.WriteLine("--------------------------Null UseId");
+
+        return RedirectToAction("Logout");
+      }
       ViewBag.OneMeetup = _context.Meetups.FirstOrDefault(w => w.MeetupId == mId);
 
       ViewBag.OneMeetupReservations = _context.Meetups.Include(s => s.UserList).FirstOrDefault(w => w.MeetupId == mId);
@@ -183,9 +196,9 @@ namespace exam_01.Controllers
         _context.Reservations.Add(newReservation);
         _context.SaveChanges();
 
-       return Redirect($"/meetups/{mId}");
+        return Redirect($"/meetups/{mId}");
       }
-       return Redirect($"/meetups/{mId}");
+      return Redirect($"/meetups/{mId}");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     [HttpPost("users/login")]

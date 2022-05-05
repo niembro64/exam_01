@@ -113,3 +113,29 @@ body {
   -ms-filter: blur(5px); */
   filter: blur(3px) saturate(30%);
 }
+
+#oneBoxl{
+  width: 180px; 
+  /* height: 150px; */
+  /* border: 1px solid white;  */
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
+  align-items: center;
+
+}
+#oneBoxr{
+  width: 250px; 
+  /* height: 150px; */
+  /* border: 1px solid white;  */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding: 10px 25px 10px 0px; 
+
+}
+
+#oneBoxBig{
+  width: 100%; 
+}
