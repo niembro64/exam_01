@@ -46,7 +46,7 @@
   <div class="d-flex flex-row flex-wrap align-items-center justify-content-center">
     @if (@ViewBag.OneMeetup.Creator.UserId == @ViewBag.Session_UserId)
     {
-      <td class="align-middle border-0"><a class="btn btn-danger my-2"
+      <td class="align-middle border-0  m-2"><a class="btn btn-danger my-2"
         href="/meetups/delete/@ViewBag.OneMeetup.MeetupId">✖
         </a></td>
 
@@ -65,16 +65,16 @@
       }
       if (found && rId != 0)
       {
-        <td class="align-middle border-0">
-          <a class="btn btn-success my-2 shadow-sm" href="/reservations/delete/@rId">
+        <td class="align-middle border-0 m-2">
+          <a class="btn btn-success my-2 shadow-sm" href="/reservations2/delete/@rId/@ViewBag.OneMeetup.MeetupId">
             ⭐
           </a>
         </td>
       }
       else
       {
-        <td class="align-middle border-0">
-          <form class="shadow-sm" action="/reservations/reserve" method="post">
+        <td class="align-middle border-0 m-2">
+          <form class="shadow-sm" action="/reservations2/reserve" method="post">
             <input type="hidden" asp-for="UserId" value=@ViewBag.Session_UserId>
             <input type="hidden" asp-for="MeetupId" value=@ViewBag.OneMeetup.MeetupId>
             <input type="submit" value="☁" class="btn btn-outline-success my-2">

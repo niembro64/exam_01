@@ -101,6 +101,16 @@ namespace exam_01.Controllers
       _context.SaveChanges();
       return RedirectToAction("Meetups");
     }
+    [HttpGet("reservations2/delete/{rId}/{mId}")]
+    public IActionResult DeleteReservation2(int rId, int mId)
+    {
+      Console.WriteLine($"+++++++DELETING RESERVATION : {rId}");
+      Reservation ReservationToDelete = _context.Reservations.SingleOrDefault(s => s.ReservationId == rId);
+      _context.Reservations.Remove(ReservationToDelete);
+      _context.SaveChanges();
+    
+        return Redirect($"/meetups/{mId}");
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [HttpGet("/meetups/{mId}")]
     public IActionResult OneMeetup(int mId)
@@ -162,6 +172,20 @@ namespace exam_01.Controllers
         return RedirectToAction("Meetups");
       }
       return View("Meetups");
+    }
+    [HttpPost("reservations2/reserve")]
+    public IActionResult AddReservation2(Reservation newReservation)
+    {
+      Console.WriteLine("--------------------------RESERVING");
+      int mId = newReservation.MeetupId;
+      if (ModelState.IsValid)
+      {
+        _context.Reservations.Add(newReservation);
+        _context.SaveChanges();
+
+       return Redirect($"/meetups/{mId}");
+      }
+       return Redirect($"/meetups/{mId}");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     [HttpPost("users/login")]
